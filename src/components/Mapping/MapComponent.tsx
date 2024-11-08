@@ -1,10 +1,11 @@
-
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import L from "leaflet";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
-
+import { StationsResponse } from "@/interfaces/ApiResponse";
+import { MapComponentProps } from "@/interfaces/MapComponentsInterfaces";
+import { Link } from "react-router-dom";
 
 // Set up the default icon for markers
 const DefaultIcon = L.icon({
@@ -19,21 +20,28 @@ const DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-
-export default function MapComponent() {
-
-
+export default function MapComponent({
+  center,
+  scrollWheelZoom = false,
+  markers,
+}: MapComponentProps) {
   return (
-    <MapContainer center={[-8.0616, -34.8720]} zoom={13} scrollWheelZoom={false}>
-        <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[-8.0616, -34.8720]}>
+    <MapContainer center={center} zoom={13} scrollWheelZoom={scrollWheelZoom}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      {markers?.map((marker: StationsResponse) => {
+        return (
+          <Marker position={[marker.latitude, marker.longitude]}>
             <Popup>
-             Softex Pernambuco. <br /> Estação softex.
+              <Link to={`/readings/${marker.id}`}>
+                <span className="text-gray-900">{marker.name}</span>
+              </Link>
             </Popup>
-        </Marker>
+          </Marker>
+        );
+      })}
     </MapContainer>
-  )
+  );
 }

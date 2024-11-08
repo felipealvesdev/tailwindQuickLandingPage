@@ -9,10 +9,10 @@ export interface ReadingsProps {
   id: number;
   organization: null;
   station: number;
-  type: "T" | "L" | "P" | "U" | "A";
+  type: "T" | "L" | "P" | "U" | "A" | "H";
   value: number;
 }
 
 export interface GraphType {
-  type: "T" | "L" | "P" | "U" | "A";
+  type: "T" | "L" | "P" | "U" | "A" | "H";
 }

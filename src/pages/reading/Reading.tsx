@@ -25,6 +25,7 @@ export default function Reading() {
     setGraphType(type);
     return;
   };
+  console.log("data readings:", data);
   return (
     <div>
       <h1>Gráfico {id}</h1>
@@ -37,7 +38,7 @@ export default function Reading() {
             })}
           />
         )}
-        <div className="mt-12 w-full flex items-center justify-center space-x-4">
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 w-full gap-4 px-4 mx-auto lg:w-[60%]">
           <Button
             onClick={() => handleGraphType("T")}
             disabled={graphType === "T"}
@@ -53,6 +54,12 @@ export default function Reading() {
           <Button
             onClick={() => handleGraphType("U")}
             disabled={graphType === "U"}
+          >
+            Pluviometria
+          </Button>
+          <Button
+            onClick={() => handleGraphType("H")}
+            disabled={graphType === "H"}
           >
             Umidade
           </Button>

@@ -15,7 +15,7 @@ function useFetch(url: string, token?: string): FetchState {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(token, url);
+      // console.log(token, url);
       setLoading(true);
       try {
         const response = await axios.get<ApiResponse>(url, {

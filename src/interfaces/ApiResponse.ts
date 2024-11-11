@@ -16,3 +16,14 @@ export interface ReadingsProps {
 export interface GraphType {
   type: "T" | "L" | "P" | "U" | "A" | "H";
 }
+
+export interface StationsResponse {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  created_at: string;
+  updated_at: string;
+  user: null;
+  organization: null;
+}

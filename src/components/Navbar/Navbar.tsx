@@ -19,6 +19,7 @@ export default function Navbar() {
   const navigation = [
     { name: 'Home', href: '/', current: location.pathname === '/'? true : false },
     { name: 'Leituras', href: '/readings', current: location.pathname === '/readings'? true : false },
+    { name: 'Fazer login', href: '/signin', current: location.pathname === '/signin'? true : false },
     { name: 'Em desenvolvimento', href: '#', current: false },
   ]
 

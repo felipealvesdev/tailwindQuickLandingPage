@@ -10,7 +10,7 @@ const Carousel: React.FC = () => {
     ]
 
     return (
-        <div className="mx-auto w-full max-w-4xl mb-8"> {/* Contêiner do Carousel ajustado */}
+        <div className="mx-auto w-full max-w-4xl mb-8">
             <CarouselShad className="mx-auto h-[500px] w-full bg-gray-700 rounded-lg shadow-lg">
                 <CarouselContent className="max-h-auto">
                     {slides.map((item, i) => {
@@ -46,7 +46,7 @@ function About() {
                     <h4 className="text-xl font-semibold text-gray-800">SOFTEXLABS</h4>
                 </div>
 
-                <div className="flex justify-around text-lg font-medium text-gray-700"> {/* Links centralizados */}
+                <div className="flex justify-around text-lg font-medium text-gray-700">
                     {links.map((link, index) => (
                         <a
                             key={index}
@@ -58,8 +58,7 @@ function About() {
                     ))}
                 </div>
 
-                <Separator className="my-6 h-px bg-gray-200" /> {/* Separador horizontal menor */}
-
+                <Separator className="my-6 h-px bg-gray-200" /> 
                 <div className="flex items-start space-x-4">
                     {/* Imagem de exemplo */}
                     <div className="w-1/3 p-2 bg-blue-100 rounded-lg">
@@ -69,8 +68,6 @@ function About() {
                             className="w-full h-auto rounded-lg"
                         />
                     </div>
-
-                    {/* Texto do artigo */}
                     <div className="flex-1">
                         <h3 className="text-lg font-semibold mb-2 text-gray-800">Artigos</h3>
                         <p className="text-gray-600 mb-4">

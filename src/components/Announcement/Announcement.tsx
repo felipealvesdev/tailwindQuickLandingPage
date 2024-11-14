@@ -31,7 +31,7 @@ const Carousel: React.FC = () => {
 };
 
 const About = () => {
-    const [selectedLink, setSelectedLink] = useState<string>(''); // Estado para controlar o link selecionado
+    const [selectedLink, setSelectedLink] = useState<string>(''); 
 
     const links = [
         { name: 'Nossos Projetos', href: '#' },
@@ -53,8 +53,8 @@ const About = () => {
                             key={index}
                             href={link.href}
                             onClick={(e) => {
-                                e.preventDefault(); // Prevenir comportamento padrão
-                                setSelectedLink(link.name); // Atualizar link selecionado
+                                e.preventDefault(); 
+                                setSelectedLink(link.name); 
                             }}
                             className={`cursor-pointer ${selectedLink === link.name ? 'text-blue-500' : ''}`}
                         >

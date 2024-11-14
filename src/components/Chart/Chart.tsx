@@ -16,7 +16,6 @@ import {
   // ChartTooltipContent,
 } from "@/components/ui/chart";
 import { GraphType, ReadingsProps } from "@/interfaces/ApiResponse";
-import { dimensions } from "@/utils/dimensions";
 import {
   ValueType,
   NameType,
@@ -113,26 +112,12 @@ export function Chart({ data }: { data: ReadingsProps[] | null }) {
       );
     }
   };
-  console.log(dimensions.width);
   return (
-    <Card className="w-full pt-12 mx-auto md:px-24">
+    <Card className="w-full pt-12 m-0 mx-auto md:px-24">
       <CardContent className="w-full">
-        <ChartContainer
-          className="w-full"
-          style={{ height: dimensions.width >= 768 ? "600px" : "400px" }}
-          config={chartConfig}
-        >
+        <ChartContainer className="w-full" config={chartConfig}>
           <ResponsiveContainer width="100%">
-            <AreaChart
-              accessibilityLayer
-              data={sorted_data}
-              margin={{
-                top: 0,
-                right: 0,
-                bottom: dimensions.width >= 768 ? 100 : 0,
-                left: -0,
-              }}
-            >
+            <AreaChart accessibilityLayer data={sorted_data}>
               <CartesianGrid vertical={false} />
               <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">

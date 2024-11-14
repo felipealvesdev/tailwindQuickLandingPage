@@ -3,7 +3,24 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import emmLogo from '../../assets/logos/emmLogo.png';
 import { Link, useLocation } from 'react-router-dom';
 
+/*import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
 
+/** import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+
+export default function Layout({ children }: { children: React.ReactNode }) {
+  return (
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
+  )
+}
+ */
 
 const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(' ')

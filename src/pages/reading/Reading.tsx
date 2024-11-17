@@ -16,10 +16,14 @@ export default function Reading() {
   const token = import.meta.env.VITE_API_TOKEN;
   const apiUrl = import.meta.env.VITE_API_URL_STATIONS_ID;
   const [graphType, setGraphType] = useState("T");
+  const [periodFilter, setPeriodFilter] = useState<
+    "today" | "7d" | "30d" | "all"
+  >("30d");
+  const today_date = new Date();
 
   const { data, loading, error } = useFetch(`${apiUrl}${id}`, token);
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading || data === null) return <p>Carregando...</p>;
   if (error) return <p>Erro ao carregar os dados: {error.message}</p>;
 
   const handleGraphType = (type: string) => {
@@ -105,28 +109,99 @@ export default function Reading() {
       </div>
     );
   }
+
+  function handlePeriodFilter(period: "today" | "7d" | "30d" | "all") {
+    return setPeriodFilter(period);
+  }
+
+  const filteredData = data.readings.filter((reading: ReadingsProps) => {
+    const date = new Date(reading.created_at);
+    const referenceDate = new Date();
+    let daysToSubtract = 30;
+    if (periodFilter === "7d") {
+      daysToSubtract = 7;
+    } else if (periodFilter === "today") {
+      daysToSubtract = 0;
+    } else if (periodFilter === "all") {
+      daysToSubtract = 9999;
+    }
+    const startDate = new Date(referenceDate);
+    startDate.setDate(startDate.getDate() - daysToSubtract);
+    return date >= startDate;
+  });
+  console.log(filteredData);
   return (
-    <div className="px-2">
-      <h1>Gráfico {id}</h1>
-      {data && <h1>Dados carregados da api</h1>}
+    <div className="px-2 w-full">
+      {data && (
+        <div className="flex flex-col py-4">
+          <h1 className="text-center text-xl md:text-2xl font-semibold">
+            Estação: {data.station_name}
+          </h1>
+          <h2 className="text-center text-base md:text-lg text-gray-950/60">
+            {today_date.toLocaleDateString("pt-BR", {
+              weekday: "short",
+              day: "2-digit",
+              month: "2-digit",
+            })}
+          </h2>
+        </div>
+      )}
       <div className="z-20 px-2 w-full min-h-[400px] overflow-hidden flex flex-col h-full items-center ">
         {graphType && (
-          <div className="w-full md:flex-row flex md:space-y-0 md:space-x-4 flex-col md:items-start items-center space-y-4">
-            <div className="w-full md:w-[65%] h-full ">
-              <Chart
-                data={data!.readings.filter((reading: ReadingsProps) => {
-                  return reading.type === graphType;
-                })}
-              />
-            </div>
-            <div className="w-full md:w-[30%] md:h-[448px] flex-1 flex flex-col items-center rounded-lg shadow justify-start overflow-hidden bg-white">
-              <div className="bg-theme-secondary-800 text-center w-full py-4">
-                <h2 className="text-xl md:text-3xl text-white">Informações</h2>
+          <div className="w-full flex flex-col items-center space-y-4">
+            <div className="w-full flex rounded-lg overflow-hidden">
+              <div
+                onClick={() => handlePeriodFilter("today")}
+                data-active={periodFilter === "today"}
+                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
+              >
+                <span>Hoje</span>
               </div>
-              <div className="flex pb-4 md:pb-0 w-full flex-1 items-center flex-col justify-start px-6">
-                {maxMinValues.map(({ type, max, min }) =>
-                  handleInformation(type, max, min)
-                )}
+              <div
+                onClick={() => handlePeriodFilter("7d")}
+                data-active={periodFilter === "7d"}
+                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
+              >
+                <span>Últimos 7 dias</span>
+              </div>
+              <div
+                onClick={() => handlePeriodFilter("30d")}
+                data-active={periodFilter === "30d"}
+                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
+              >
+                <span>Últimos 30 dias</span>
+              </div>
+              <div
+                onClick={() => handlePeriodFilter("all")}
+                data-active={periodFilter === "all"}
+                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
+              >
+                <span>Todas as leituras</span>
+              </div>
+            </div>
+            <div className="w-full md:flex-row flex md:space-y-0 md:space-x-4 flex-col md:items-start items-center space-y-4">
+              <div className="w-full md:w-[65%] h-full ">
+                <Chart
+                  data={
+                    filteredData.length > 0
+                      ? filteredData.filter((reading: ReadingsProps) => {
+                          return reading.type === graphType;
+                        })
+                      : null
+                  }
+                />
+              </div>
+              <div className="w-full md:w-[30%] md:h-[448px] flex-1 flex flex-col items-center rounded-lg shadow justify-start overflow-hidden bg-white">
+                <div className="bg-theme-secondary-800 text-center w-full py-4">
+                  <h2 className="text-xl md:text-3xl text-white">
+                    Informações
+                  </h2>
+                </div>
+                <div className="flex pb-4 md:pb-0 w-full flex-1 items-center flex-col justify-start px-6">
+                  {maxMinValues.map(({ type, max, min }) =>
+                    handleInformation(type, max, min)
+                  )}
+                </div>
               </div>
             </div>
           </div>

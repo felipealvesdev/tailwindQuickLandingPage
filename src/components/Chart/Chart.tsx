@@ -16,12 +16,12 @@ import {
   // ChartTooltipContent,
 } from "@/components/ui/chart";
 import { GraphType, ReadingsProps } from "@/interfaces/ApiResponse";
-import { dimensions } from "@/utils/dimensions";
 import {
   ValueType,
   NameType,
 } from "recharts/types/component/DefaultTooltipContent";
 import clsx from "clsx";
+import { dimensions } from "@/utils/dimensions";
 
 export const description = "A simple area chart";
 
@@ -71,7 +71,7 @@ export function Chart({ data }: { data: ReadingsProps[] | null }) {
         <div className="custom-tooltip items-center space-x-2 bg-slate-100 flex rounded-lg py-2 shadow-lg px-4">
           <div
             className={clsx("h-[90%] min-h-[48px] w-1 rounded-full", {
-              "bg-[#acf100]": chartConfig.desktop.label === "Luminosidade",
+              "bg-[#c0d314]": chartConfig.desktop.label === "Luminosidade",
               "bg-[#e01060]": chartConfig.desktop.label === "Temperatura",
               "bg-[#12e9de]": chartConfig.desktop.label === "Pluviometria",
               "bg-[#380ff0]": chartConfig.desktop.label === "Umidade",
@@ -113,26 +113,16 @@ export function Chart({ data }: { data: ReadingsProps[] | null }) {
       );
     }
   };
-  console.log(dimensions.width);
   return (
-    <Card className="w-full pt-12 mx-auto md:px-24">
-      <CardContent className="w-full">
+    <Card className="w-full p-2 md:p-6 m-0 mx-auto">
+      <CardContent className="w-full p-0">
         <ChartContainer
           className="w-full"
-          style={{ height: dimensions.width >= 768 ? "600px" : "400px" }}
+          style={{ height: dimensions.width > 768 ? "400px" : "300px" }}
           config={chartConfig}
         >
-          <ResponsiveContainer width="100%">
-            <AreaChart
-              accessibilityLayer
-              data={sorted_data}
-              margin={{
-                top: 0,
-                right: 0,
-                bottom: dimensions.width >= 768 ? 100 : 0,
-                left: -0,
-              }}
-            >
+          <ResponsiveContainer width="100%" className="p-0">
+            <AreaChart className="w-full" accessibilityLayer data={sorted_data}>
               <CartesianGrid vertical={false} />
               <defs>
                 <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">

@@ -37,7 +37,7 @@ export default function MapComponent({
             placeholder="Informe o ID"
             className="w-full p-2 border rounded"
           />
-          <button className="mt-2 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+          <button className="mt-2 w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
             Buscar
           </button>
         </div>

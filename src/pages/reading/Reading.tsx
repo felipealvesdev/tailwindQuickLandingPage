@@ -132,9 +132,9 @@ export default function Reading() {
           </div>
         )}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-3 w-full gap-4 px-4 mx-auto lg:w-[60%]">
-          {["T", "P", "U", "H", "A", "L"].map((type) => (
+          {["T", "P", "U", "H", "A", "L"].map((type, i) => (
             <Button
-              key={type}
+              key={`${type}-${i}`}
               onClick={() => handleGraphType(type)}
               disabled={graphType === type}
             >

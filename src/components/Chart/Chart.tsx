@@ -16,10 +16,7 @@ import {
   // ChartTooltipContent,
 } from "@/components/ui/chart";
 import { GraphType, ReadingsProps } from "@/interfaces/ApiResponse";
-import {
-  ValueType,
-  NameType,
-} from "recharts/types/component/DefaultTooltipContent";
+
 import clsx from "clsx";
 import { dimensions } from "@/utils/dimensions";
 
@@ -57,7 +54,10 @@ export function Chart({ data }: { data: ReadingsProps[] | null }) {
     active,
     payload,
     label,
-  }: TooltipProps<ValueType, NameType>) => {
+  }: TooltipProps<
+    number | string | Array<number | string>,
+    number | string
+  >) => {
     const options: Intl.DateTimeFormatOptions = {
       day: "2-digit",
       month: "2-digit",

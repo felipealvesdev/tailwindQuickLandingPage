@@ -21,11 +21,11 @@ export default function Home() {
   console.log(data);
   return (
     <div>
-      <Announcement />
       <MapComponent
         center={[-8.061731971923335, -34.87185848861633]}
         markers={data}
       />
+      <Announcement />
     </div>
   );
 }

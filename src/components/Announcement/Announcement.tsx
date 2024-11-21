@@ -1,34 +1,114 @@
+import { useState } from "react";
+import { Separator } from "@/components/ui/separator";
 
-export default function Announcement() {
+const About = () => {
+  const [selectedLink, setSelectedLink] = useState<"Nossos Projetos"|"Como participar"|"Artigos">("Nossos Projetos"); // Estado para controlar o link selecionado
+
+  const links:{name:"Nossos Projetos"|"Como participar"|"Artigos",href:string}[] = [
+    { name: 'Nossos Projetos', href: '#' },
+    { name: 'Como participar', href: '#' },
+    { name: 'Artigos', href: '#' },
+];
+
   return (
-    <section>
-  <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-      <div className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
-        <img
-          alt=""
-          src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+    <section className="flex flex-col items-center py-8 bg-gray-50">
+      <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg p-8 border-2">
+        <div className="text-center mb-6">
+          <h4 className="text-xl font-semibold text-gray-800">SOFTEXLABS</h4>
+        </div>
+
+        <div className="flex justify-around text-lg font-medium text-gray-700">
+          {links.map((link, index) => (
+            <a
+              key={index}
+              href={link.href}
+              onClick={(e) => {
+                e.preventDefault(); 
+                setSelectedLink(link.name);
+              }}
+              className={`cursor-pointer ${selectedLink === link.name ? "text-orange-500" : ""}`}
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+
+        <Separator className="my-6 h-px bg-gray-200" />
+
+        {/* Renderização condicional baseada no link selecionado */}
+        <div className="flex items-start space-x-4">
+          {selectedLink === "Nossos Projetos" && (
+            <div className="flex flex-col items-start space-y-4">
+              <div className="w-full p-2 bg-orange-100 rounded-lg">
+                <img
+                  src="https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="Exemplo de Projeto"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold mb-2 text-gray-800">Nossos Projetos</h3>
+                <p className="text-gray-600 mb-4">
+                  Explore nossos projetos inovadores que estão transformando a tecnologia e criando impacto positivo.
+                </p>
+                <p className="text-gray-600 mb-6">
+                  Cada projeto visa resolver desafios reais e promover mudanças sustentáveis.
+                </p>
+                <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">
+                  Ver Projetos
+                </button>
+              </div>
+            </div>
+          )}
+          {selectedLink === "Como participar" && (
+            <div className="flex flex-col items-start space-y-4">
+              <div className="w-full p-2 bg-orange-100 rounded-lg">
+                <img
+                  src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="Participação"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold mb-2 text-gray-800">Como participar</h3>
+                <p className="text-gray-600 mb-4">
+                  Junte-se à nossa comunidade vibrante e contribua com suas habilidades para projetos colaborativos.
+                </p>
+                <p className="text-gray-600 mb-6">
+                  Oferecemos oportunidades para aprender, crescer e impactar positivamente o setor de tecnologia.
+                </p>
+                <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">
+                  Saiba Mais
+                </button>
+              </div>
+            </div>
+          )}
+          {selectedLink === "Artigos" && (
+            <div className="flex flex-col items-start space-y-4">
+              <div className="w-full p-2 bg-orange-100 rounded-lg">
+                <img
+                  src="https://images.pexels.com/photos/2333332/pexels-photo-2333332.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="Exemplo de Artigo"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold mb-2 text-gray-800">Artigos</h3>
+                <p className="text-gray-600 mb-4">
+                  Descubra artigos e estudos sobre as mais recentes inovações tecnológicas, 
+                  tendências e desafios enfrentados pela indústria. Estes artigos oferecem insights valiosos 
+                  de especialistas e ajudam a expandir seu conhecimento no mundo da tecnologia.
+                </p>
+                <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">
+                  Ver Artigos
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+    </section>
+  );
+};
 
-      <div className="lg:py-24">
-        <h2 className="text-3xl font-bold sm:text-4xl">Tenha uma estação de monitoramento!</h2>
-
-        <p className="mt-4 text-gray-600">
-          Na softex desenvolvemos uma estação de monitoramento meteorológico que você
-          pode ter em seu local de trabalho. Venha conhecer nosso projeto melhor e seja um parceiro.
-        </p>
-
-        <a
-          href="#"
-          className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
-        >
-          Conhecer o projeto.
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-  )
-}
+export default About;

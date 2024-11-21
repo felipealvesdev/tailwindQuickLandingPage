@@ -7,7 +7,6 @@ import { StationsResponse } from "@/interfaces/ApiResponse";
 import { MapComponentProps } from "@/interfaces/MapComponentsInterfaces";
 import { Link } from "react-router-dom";
 
-// Set up the default icon for markers
 const DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
@@ -26,22 +25,49 @@ export default function MapComponent({
   markers,
 }: MapComponentProps) {
   return (
-    <MapContainer center={center} zoom={13} scrollWheelZoom={scrollWheelZoom}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      {markers?.map((marker: StationsResponse) => {
-        return (
-          <Marker position={[marker.latitude, marker.longitude]}>
-            <Popup>
-              <Link to={`/readings/${marker.id}`}>
-                <span className="text-gray-900">{marker.name}</span>
-              </Link>
-            </Popup>
-          </Marker>
-        );
-      })}
-    </MapContainer>
+    <div className="w-full max-w-3xl mx-auto p-4 bg-white rounded-lg shadow-md">
+      <h2 className="text-center text-3xl font-semibold mb-4">Estações</h2>
+      
+      <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-4">
+        <h3 className="text-lg font-semibold mb-4">Buscar</h3>
+        <div>
+          <label className="block text-gray-700">Buscar por ID</label>
+          <input
+            type="text"
+            placeholder="Informe o ID"
+            className="w-full p-2 border rounded"
+          />
+          <button className="mt-2 w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <div className="w-full bg-gray-100 p-1 rounded-lg">
+        <MapContainer
+          center={center}
+          zoom={13}
+          scrollWheelZoom={scrollWheelZoom}
+          className="w-full h-80 rounded-lg"
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {markers?.map((marker: StationsResponse) => (
+            <Marker
+              key={marker.id}
+              position={[marker.latitude, marker.longitude]}
+            >
+              <Popup>
+                <Link to={`/readings/${marker.id}`}>
+                  <span className="text-gray-900">{marker.name}</span>
+                </Link>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </div>
+    </div>
   );
 }

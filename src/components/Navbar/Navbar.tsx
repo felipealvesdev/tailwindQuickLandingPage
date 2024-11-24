@@ -15,7 +15,7 @@ export default function Navbar() {
   ];
 
   return (
-    <Disclosure as="nav" className="bg-orange-500 shadow-lg">
+    <Disclosure as="nav" className="bg-orange-500 shadow-lg pb-1">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -59,7 +59,7 @@ export default function Navbar() {
               </div>
               <div className="hidden sm:flex items-center space-x-4">
                 <Link
-                  to="/login"
+                  to="/signin"
                   className="rounded-full bg-white px-4 py-2 text-sm font-medium text-orange-700 shadow-md hover:bg-orange-500 hover:text-white focus:outline-none"
                 >
                   Login
@@ -86,10 +86,10 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className="px-4 pt-4">
+            <div className="px-20 pt-4">
               <Link
-                to="/login"
-                className="block w-full rounded-lg bg-white px-4 py-2 text-center text-sm font-medium text-orange-700 shadow-md hover:bg-orange-500 hover:text-white"
+                to="/signin"
+                className="block w-full rounded-lg bg-white px-4 mb-4 py-2 text-center text-sm font-medium text-orange-700 shadow-md hover:bg-orange-700 hover:text-white"
               >
                 Login
               </Link>

@@ -50,13 +50,6 @@ export default function Navbar() {
                   </Link>
                 ))}
               </div>
-              <div className="hidden md:flex flex-1 justify-center px-6">
-                <input
-                  type="text"
-                  placeholder="Busque por uma cidade..."
-                  className="w-full max-w-md rounded-lg border border-orange-500 bg-orange-100 px-4 py-2 text-sm text-orange-900 focus:outline-none focus:ring-2 focus:ring-orange-700"
-                />
-              </div>
               <div className="hidden sm:flex items-center space-x-4">
                 <Link
                   to="/login"

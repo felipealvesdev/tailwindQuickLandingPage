@@ -22,7 +22,7 @@ const DefaultIcon = L.icon({
 
 function renderSelectItems(markers: StationsResponse[]) {
   return markers
-    ?.filter((marker) => marker)
+    .filter((marker) => marker)
     .map((marker) => (
       <SelectItem key={marker.id} value={String(marker.id)}>
         {marker.name}
@@ -35,10 +35,10 @@ L.Marker.prototype.options.icon = DefaultIcon;
 export default function MapComponent({
   center,
   scrollWheelZoom = false,
-  markers = [],
+  markers,
 }: MapComponentProps) {
   const [select, setselect] = useState<string | undefined>("");
-  const filteredMarkers = select? markers.filter((marker) => String(marker.id) === select): markers;
+  const filteredMarkers = select? markers?.filter((marker) => String(marker.id) === select): markers;
 
   const handleReset = () => {
     setselect("");
@@ -46,20 +46,19 @@ export default function MapComponent({
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 bg-white rounded-lg shadow-md">
-      <h2 className="text-center text-3xl font-semibold mb-4">Estações</h2>
-
+      <h2 className="text-center text-2xl sm:text-3xl font-semibold mb-6">Estações</h2>
       <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-4">
         <h3 className="text-lg font-semibold mb-4">Buscar Estação</h3>
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center space-x-2">
+          <div className="flex w-full items-center space-x-2">
             <Select value={select} onValueChange={setselect}>
-              <SelectTrigger className="w-[410px]">
+              <SelectTrigger className="w-full flex flex-1"> 
                 <SelectValue placeholder="Selecione uma estação" />
               </SelectTrigger>
               <SelectContent className="max-h-60 overflow-y-auto">
-                {renderSelectItems(markers)}
+                {markers && renderSelectItems(markers)}
               </SelectContent>
-
+a
             </Select>
             <button
               onClick={handleReset}
@@ -70,18 +69,14 @@ export default function MapComponent({
             </button>
           </div>
         </div>
-
-        <button className="mt-2 w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600">
-          Buscar
-        </button>
       </div>
 
-      <div className="w-full bg-gray-100 p-1 rounded-lg">
+      <div className="w-full bg-gray-100 p-1 rounded-lg z-0">
         <MapContainer
           center={center}
           zoom={13}
           scrollWheelZoom={scrollWheelZoom}
-          className="w-full h-80 rounded-lg"
+          className="w-full h-80 rounded-lg z-0"
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

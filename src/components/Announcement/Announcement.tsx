@@ -11,7 +11,7 @@ const About = () => {
 ];
 
   return (
-    <section className="flex flex-col items-center py-8 bg-gray-50">
+    <section className="flex flex-col items-center py-8">
       <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg p-8 border-2">
         <div className="text-center mb-6">
           <h4 className="text-xl font-semibold text-gray-800">SOFTEXLABS</h4>

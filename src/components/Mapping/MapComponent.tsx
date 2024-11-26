@@ -58,7 +58,6 @@ export default function MapComponent({
               <SelectContent className="max-h-60 overflow-y-auto">
                 {markers && renderSelectItems(markers)}
               </SelectContent>
-a
             </Select>
             <button
               onClick={handleReset}

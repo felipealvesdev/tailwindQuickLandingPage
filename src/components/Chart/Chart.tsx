@@ -23,6 +23,17 @@ import { dimensions } from "@/utils/dimensions";
 export const description = "A simple area chart";
 
 export function Chart({ data }: { data: ReadingsProps[] | null }) {
+  if (!data || data === null) {
+    return (
+      <Card className="w-full min-h-[448px] p-2 md:p-6 m-0 mx-auto">
+        <CardContent className="w-full p-0 md:min-h-[400px] text-center flex items-center justify-center">
+          <p className="font-semibold text-lg">
+            Não há leituras disponíveis para esse período
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
   function handleGraphType(type: GraphType) {
     switch (type.type) {
       case "T":
@@ -42,9 +53,7 @@ export function Chart({ data }: { data: ReadingsProps[] | null }) {
   const chartConfig = {
     desktop: handleGraphType({ type: data![0].type }),
   } satisfies ChartConfig;
-  if (!data) {
-    return null;
-  }
+
   const sorted_data = data.sort((a, b) => {
     return a.id - b.id;
   });

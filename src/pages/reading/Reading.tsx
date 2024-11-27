@@ -53,6 +53,12 @@ export default function Reading() {
 
   const maxMinValues = data ? calcularMaxMinPorTipo(data.readings) : [];
 
+  function verifyDataExists(type: string) {
+    if (maxMinValues.some((reading) => reading.type === type)) return true;
+
+    return false;
+  }
+
   function handleInformation(type: string, max: number, min: number) {
     const title = () => {
       switch (type) {
@@ -207,20 +213,23 @@ export default function Reading() {
           </div>
         )}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-3 w-full gap-4 px-4 mx-auto lg:w-[60%]">
-          {["T", "P", "U", "H", "A", "L"].map((type, i) => (
-            <Button
-              key={`${type}-${i}`}
-              onClick={() => handleGraphType(type)}
-              disabled={graphType === type}
-            >
-              {type === "T" && "Temperatura"}
-              {type === "P" && "Pressão"}
-              {type === "U" && "Pluviometria"}
-              {type === "H" && "Umidade"}
-              {type === "A" && "Altura"}
-              {type === "L" && "Luminosidade"}
-            </Button>
-          ))}
+          {["T", "P", "U", "H", "A", "L"].map(
+            (type, i) =>
+              verifyDataExists(type) && (
+                <Button
+                  key={`${type}-${i}`}
+                  onClick={() => handleGraphType(type)}
+                  disabled={graphType === type}
+                >
+                  {type === "T" && "Temperatura"}
+                  {type === "P" && "Pressão"}
+                  {type === "U" && "Pluviometria"}
+                  {type === "H" && "Umidade"}
+                  {type === "A" && "Altura"}
+                  {type === "L" && "Luminosidade"}
+                </Button>
+              )
+          )}
         </div>
       </div>
     </div>

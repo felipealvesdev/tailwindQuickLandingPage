@@ -6,16 +6,26 @@ import { Switch } from "@/components/ui/switch";
 import { Sun, MoonStar } from "lucide-react";
 import useTheme from "@/hooks/useTheme";
 import LanguageDropDownMenu from "../LanguageDropDownMenu/LanguageDropDownMenu";
+import useTranslation from "@/hooks/useTranslation";
 
 const classNames = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
 export default function Navbar() {
   const location = useLocation();
   const { toggleTheme, theme } = useTheme();
+  const { language } = useTranslation();
 
   const navigation = [
-    { name: "Home", href: "/", current: location.pathname === "/" },
-    { name: "Em desenvolvimento", href: "#", current: false },
+    {
+      name: language === "pt-BR" ? "Inicio" : "Home",
+      href: "/",
+      current: location.pathname === "/",
+    },
+    {
+      name: language === "pt-BR" ? "Em desenvolvimento" : "Work in progress",
+      href: "#",
+      current: false,
+    },
   ];
 
   return (

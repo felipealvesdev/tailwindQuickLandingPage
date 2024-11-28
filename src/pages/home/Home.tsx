@@ -18,7 +18,7 @@ export default function Home() {
       </div>
     );
   }
-  console.log(data);
+
   return (
     <div className="w-full flex flex-col py-4 px-4 lg:px-0 space-y-2">
       <MapComponent

@@ -18,7 +18,9 @@ function LanguageDropDownMenu() {
         <Languages className="text-gray-50 dark:text-gray-50" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>Selecione o idioma</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          {language === "pt-BR" ? "Selecione o idioma" : "Select language"}
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup
           value={language}

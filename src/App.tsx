@@ -7,9 +7,11 @@ import Reading from "./pages/reading/Reading.tsx";
 import Readings from "./pages/readings/Readings.tsx";
 import SignIn from "./pages/signin/SignIn.tsx";
 import NotFound from "./pages/notFound/NotFound.tsx";
+import AppProvider from "./hooks/index.tsx";
 
 function App() {
   return (
+    <AppProvider>
     <BrowserRouter>
       <Navbar />
       <Routes>
@@ -21,6 +23,7 @@ function App() {
       </Routes>
       <Footer />
     </BrowserRouter>
+    </AppProvider>
   );
 }
 

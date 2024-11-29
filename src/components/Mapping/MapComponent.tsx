@@ -45,7 +45,7 @@ export default function MapComponent({
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-4 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+    <div className="w-full max-w-3xl mx-auto p-4 bg-white dark:bg-gray-950 rounded-lg shadow-md">
       <h2 className="text-center text-2xl sm:text-3xl font-semibold mb-6">Estações</h2>
       <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-4">
         <h3 className="text-lg font-semibold mb-4">Buscar Estação</h3>

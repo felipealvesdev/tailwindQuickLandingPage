@@ -5,6 +5,7 @@ import { ReadingsProps } from "@/interfaces/ApiResponse";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MoveDown, MoveUp } from "lucide-react";
+import useTranslation from "@/hooks/useTranslation";
 
 // interface DataType {
 //   id: number;
@@ -12,6 +13,7 @@ import { MoveDown, MoveUp } from "lucide-react";
 // }
 
 export default function Reading() {
+  const { language } = useTranslation();
   const { id } = useParams();
   const token = import.meta.env.VITE_API_TOKEN;
   const apiUrl = import.meta.env.VITE_API_URL_STATIONS_ID;
@@ -22,6 +24,77 @@ export default function Reading() {
   const today_date = new Date();
 
   const { data, loading, error } = useFetch(`${apiUrl}${id}`, token);
+
+  const translateObject = {
+    title: {
+      "pt-BR": "Estação",
+      "en-US": "Station",
+    },
+    filters: [
+      {
+        "pt-BR": "Hoje",
+        "en-US": "Today",
+        periodFilter: "today",
+      },
+      {
+        "pt-BR": "Últimos 7 dias",
+        "en-US": "Last 7 days",
+        periodFilter: "7d",
+      },
+      {
+        "pt-BR": "Últimos 30 dias",
+        "en-US": "Last 30 days",
+        periodFilter: "30d",
+      },
+      {
+        "pt-BR": "Todas as leituras",
+        "en-US": "All readings",
+        periodFilter: "all",
+      },
+    ] as {
+      "pt-BR": string;
+      "en-US": string;
+      periodFilter: "today" | "7d" | "30d" | "all";
+    }[],
+    infoCard: {
+      title: {
+        "pt-BR": "Informações",
+        "en-US": "Info",
+      },
+      parameters: [
+        {
+          title: "T",
+          "pt-BR": "Temperatura",
+          "en-US": "Temperature",
+        },
+        {
+          title: "P",
+          "pt-BR": "Pressão",
+          "en-US": "Pressure",
+        },
+        {
+          title: "H",
+          "pt-BR": "Umidade",
+          "en-US": "Humidity",
+        },
+        {
+          title: "U",
+          "pt-BR": "Pluviometria",
+          "en-US": "Precipitation",
+        },
+        {
+          title: "A",
+          "pt-BR": "Altitude",
+          "en-US": "Altitude",
+        },
+        {
+          title: "L",
+          "pt-BR": "Luminosidade",
+          "en-US": "Luminosity",
+        },
+      ],
+    },
+  };
 
   if (loading || data === null) return <p>Carregando...</p>;
   if (error) return <p>Erro ao carregar os dados: {error.message}</p>;
@@ -60,26 +133,29 @@ export default function Reading() {
   }
 
   function handleInformation(type: string, max: number, min: number) {
+    function celsiusToFahrenheit(celsius: number) {
+      return (celsius * 9) / 5 + 32;
+    }
     const title = () => {
       switch (type) {
         case "T":
-          return "Temperatura";
+          return language === "pt-BR" ? "Temperatura" : "Temperature";
         case "P":
-          return "Pressão";
+          return language === "pt-BR" ? "Pressão" : "Pressure";
         case "U":
-          return "Pluviometria";
+          return language === "pt-BR" ? "Pluviometria" : "Preciptation";
         case "H":
-          return "Umidade";
+          return language === "pt-BR" ? "Umidade" : "Humidity";
         case "A":
-          return "Altura";
+          return language === "pt-BR" ? "Altitude" : "Altitude";
         case "L":
-          return "Luminosidade";
+          return language === "pt-BR" ? "Luminosidade" : "Luminosity";
       }
     };
     const unit = () => {
       switch (type) {
         case "T":
-          return "°C";
+          return language === "pt-BR" ? "°C" : "°F";
         case "P":
           return "kPa";
         case "U":
@@ -87,7 +163,7 @@ export default function Reading() {
         case "H":
           return "%";
         case "A":
-          return "m";
+          return language === "pt-BR" ? "m" : "ft";
         case "L":
           return "lm";
       }
@@ -103,12 +179,28 @@ export default function Reading() {
         <div className="flex items-start space-x-8 justify-start w-[60%]">
           <span className="flex items-center space-x-4 w-1/2">
             <MoveDown color="#263af1" />{" "}
-            {type === "P" ? (min / 1000).toFixed(1) : min.toFixed(1)}
+            {type === "P"
+              ? (min / 1000).toFixed(1)
+              : type === "T" && language === "pt-BR"
+              ? min.toFixed(1)
+              : type === "T" && language === "en-US"
+              ? celsiusToFahrenheit(min).toFixed(1)
+              : type === "A" && language === "en-US"
+              ? (min * 3.28084).toFixed(1)
+              : min.toFixed(1)}
             {unit()}
           </span>
           <span className="flex items-center space-x-4 w-1/2">
             <MoveUp color="#e02929" />{" "}
-            {type === "P" ? (max / 1000).toFixed(1) : max.toFixed(1)}
+            {type === "P"
+              ? (max / 1000).toFixed(1)
+              : type === "T" && language === "pt-BR"
+              ? max.toFixed(1)
+              : type === "T" && language === "en-US"
+              ? celsiusToFahrenheit(max).toFixed(1)
+              : type === "A" && language === "en-US"
+              ? (max * 3.28084).toFixed(1)
+              : max.toFixed(1)}
             {unit()}
           </span>
         </div>
@@ -135,20 +227,26 @@ export default function Reading() {
     startDate.setDate(startDate.getDate() - daysToSubtract);
     return date >= startDate;
   });
-  console.log(filteredData);
+
   return (
     <div className="px-2 w-full">
       {data && (
         <div className="flex flex-col py-4">
           <h1 className="text-center text-xl md:text-2xl font-semibold">
-            Estação: {data.station_name}
+            {language === "pt-BR"
+              ? translateObject.title["pt-BR"]
+              : translateObject.title["en-US"]}
+            : {data.station_name}
           </h1>
           <h2 className="text-center text-base md:text-lg text-gray-950/60">
-            {today_date.toLocaleDateString("pt-BR", {
-              weekday: "short",
-              day: "2-digit",
-              month: "2-digit",
-            })}
+            {today_date.toLocaleDateString(
+              language === "pt-BR" ? "pt-BR" : "en-US",
+              {
+                weekday: "short",
+                day: "2-digit",
+                month: "2-digit",
+              }
+            )}
           </h2>
         </div>
       )}
@@ -156,34 +254,20 @@ export default function Reading() {
         {graphType && (
           <div className="w-full flex flex-col items-center space-y-4">
             <div className="w-full flex rounded-lg overflow-hidden">
-              <div
-                onClick={() => handlePeriodFilter("today")}
-                data-active={periodFilter === "today"}
-                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
-              >
-                <span>Hoje</span>
-              </div>
-              <div
-                onClick={() => handlePeriodFilter("7d")}
-                data-active={periodFilter === "7d"}
-                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
-              >
-                <span>Últimos 7 dias</span>
-              </div>
-              <div
-                onClick={() => handlePeriodFilter("30d")}
-                data-active={periodFilter === "30d"}
-                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
-              >
-                <span>Últimos 30 dias</span>
-              </div>
-              <div
-                onClick={() => handlePeriodFilter("all")}
-                data-active={periodFilter === "all"}
-                className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
-              >
-                <span>Todas as leituras</span>
-              </div>
+              {translateObject.filters.map((filter, i) => {
+                return (
+                  <div
+                    key={`${filter.periodFilter}-${i}`}
+                    onClick={() => handlePeriodFilter(filter.periodFilter)}
+                    data-active={periodFilter === filter.periodFilter}
+                    className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
+                  >
+                    <span>
+                      {language === "pt-BR" ? filter["pt-BR"] : filter["en-US"]}
+                    </span>
+                  </div>
+                );
+              })}
             </div>
             <div className="w-full md:flex-row flex md:space-y-0 md:space-x-4 flex-col md:items-start items-center space-y-4">
               <div className="w-full md:w-[65%] h-full ">
@@ -200,7 +284,9 @@ export default function Reading() {
               <div className="w-full md:w-[30%] md:h-[448px] flex-1 flex flex-col items-center rounded-lg shadow justify-start overflow-hidden bg-white">
                 <div className="bg-theme-secondary-800 text-center w-full py-4">
                   <h2 className="text-xl md:text-3xl text-white">
-                    Informações
+                    {language === "pt-BR"
+                      ? translateObject.infoCard.title["pt-BR"]
+                      : translateObject.infoCard.title["en-US"]}
                   </h2>
                 </div>
                 <div className="flex pb-4 md:pb-0 w-full flex-1 items-center flex-col justify-start px-6">
@@ -213,20 +299,17 @@ export default function Reading() {
           </div>
         )}
         <div className="mt-12 grid grid-cols-2 md:grid-cols-3 w-full gap-4 px-4 mx-auto lg:w-[60%]">
-          {["T", "P", "U", "H", "A", "L"].map(
+          {translateObject.infoCard.parameters.map(
             (type, i) =>
-              verifyDataExists(type) && (
+              verifyDataExists(type.title) && (
                 <Button
                   key={`${type}-${i}`}
-                  onClick={() => handleGraphType(type)}
-                  disabled={graphType === type}
+                  onClick={() => handleGraphType(type.title)}
+                  disabled={graphType === type.title}
                 >
-                  {type === "T" && "Temperatura"}
-                  {type === "P" && "Pressão"}
-                  {type === "U" && "Pluviometria"}
-                  {type === "H" && "Umidade"}
-                  {type === "A" && "Altura"}
-                  {type === "L" && "Luminosidade"}
+                  {language === "pt-BR"
+                    ? translateObject.infoCard.parameters[i]["pt-BR"]
+                    : translateObject.infoCard.parameters[i]["en-US"]}
                 </Button>
               )
           )}

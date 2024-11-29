@@ -308,7 +308,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="pb-12 flex items-center justify-evenly lg:col-span-5 border-t w-full border-gray-100">
+      <div className="pb-12 pt-6 flex items-center justify-evenly lg:col-span-5 border-t w-full border-gray-100">
         <div className="flex flex-1" />
         <div className="flex flex-1 items-center justify-center">
           <ul className="flex flex-wrap gap-4 text-xs">

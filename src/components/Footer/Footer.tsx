@@ -3,12 +3,12 @@ import softexPernambucoLogo from '../../assets/logos/softexPernambucoLogo.png';
 
 export default function Footer() {
   return (
-    <footer className="bg-white lg:grid lg:grid-cols-5">
+    <footer className="bg-white dark:bg-gray-800 lg:grid lg:grid-cols-5">
       <div className="relative block h-32 lg:col-span-2 lg:h-full">
         <img
           src={softexPernambucoLogo}
           alt=""
-          className="absolute inset-0 h-50 w-full object-scale-down"
+          className="absolute inset-0 h-50 w-full object-scale-down "
         />
       </div>
 
@@ -16,14 +16,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <p>
-              <span className="text-xs uppercase tracking-wide text-gray-500"> Call us </span>
+              <span className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400"> Call us </span>
 
-              <a href="#" className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl">
+              <a href="#" className="block text-2xl font-medium text-gray-900 dark:text-gray-400 hover:opacity-75 sm:text-3xl">
                 0123456789
               </a>
             </p>
 
-            <ul className="mt-8 space-y-1 text-sm text-gray-700">
+            <ul className="mt-8 space-y-1 text-sm text-gray-700 dark:text-gray-200">
               <li>Monday to Friday: 10am - 5pm</li>
               <li>Weekend: 10am - 3pm</li>
             </ul>
@@ -34,7 +34,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Facebook</span>
 
@@ -53,7 +53,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Instagram</span>
 
@@ -72,7 +72,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Twitter</span>
 
@@ -89,7 +89,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">GitHub</span>
 
@@ -108,7 +108,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Dribbble</span>
 
@@ -126,68 +126,68 @@ export default function Footer() {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <p className="font-medium text-gray-900">Services</p>
+              <p className="font-medium text-gray-800 dark:text-gray-400">Services</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 transition hover:opacity-75"> 1on1 Coaching </a>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> Company Review </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 transition hover:opacity-75"> Company Review </a>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 transition hover:opacity-75"> Accounts Review </a>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 transition hover:opacity-75"> HR Consulting </a>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 transition hover:opacity-75"> SEO Optimisation </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <p className="font-medium text-gray-900">Company</p>
+              <p className="font-medium text-gray-800 dark:text-gray-400">Company</p>
 
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> About </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 transition hover:opacity-75"> About </a>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> Meet the Team </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 ransition hover:opacity-75"> Meet the Team </a>
                 </li>
 
                 <li>
-                  <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+                  <a href="#" className="text-gray-700 dark:text-gray-200 transition hover:opacity-75"> Accounts Review </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-100 pt-12">
+        <div className="mt-12 border-t border-gray-100 dark:border-gray-950 pt-12">
           <div className="sm:flex sm:items-center sm:justify-between">
             <ul className="flex flex-wrap gap-4 text-xs">
               <li>
-                <a href="#" className="text-gray-500 transition hover:opacity-75"> Terms & Conditions </a>
+                <a href="#" className="text-gray-500 dark:text-gray-300 transition hover:opacity-75"> Terms & Conditions </a>
               </li>
 
               <li>
-                <a href="#" className="text-gray-500 transition hover:opacity-75"> Privacy Policy </a>
+                <a href="#" className="text-gray-500 dark:text-gray-300 transition hover:opacity-75"> Privacy Policy </a>
               </li>
 
               <li>
-                <a href="#" className="text-gray-500 transition hover:opacity-75"> Cookies </a>
+                <a href="#" className="text-gray-500 dark:text-gray-300 transition hover:opacity-75"> Cookies </a>
               </li>
             </ul>
 
-            <p className="mt-8 text-xs text-gray-500 sm:mt-0">
+            <p className="mt-8 text-xs text-gray-500 sm:mt-0 dark:text-gray-300">
               &copy; 2022. Company Name. All rights reserved.
             </p>
           </div>

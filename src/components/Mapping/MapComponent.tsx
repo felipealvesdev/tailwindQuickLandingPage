@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import { ListRestart } from "lucide-react";
 
+// Configuração do ícone do marcador no mapa
 const DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
@@ -19,6 +20,8 @@ const DefaultIcon = L.icon({
   shadowSize: [41, 41],
   shadowAnchor: [12, 41],
 });
+
+L.Marker.prototype.options.icon = DefaultIcon;
 
 function renderSelectItems(markers: StationsResponse[]) {
   return markers
@@ -30,15 +33,13 @@ function renderSelectItems(markers: StationsResponse[]) {
     ));
 }
 
-L.Marker.prototype.options.icon = DefaultIcon;
-
 export default function MapComponent({
   center,
   scrollWheelZoom = false,
   markers,
 }: MapComponentProps) {
   const [select, setselect] = useState<string | undefined>("");
-  const filteredMarkers = select? markers?.filter((marker) => String(marker.id) === select): markers;
+  const filteredMarkers = select ? markers?.filter((marker) => String(marker.id) === select) : markers;
 
   const handleReset = () => {
     setselect("");
@@ -46,31 +47,37 @@ export default function MapComponent({
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 bg-white dark:bg-gray-950 rounded-lg shadow-md">
-      <h2 className="text-center text-2xl sm:text-3xl font-semibold mb-6">Estações</h2>
-      <div className="w-full bg-gray-50 p-4 rounded-lg shadow-md mb-4">
-        <h3 className="text-lg font-semibold mb-4">Buscar Estação</h3>
+      <h2 className="text-center text-2xl sm:text-3xl font-semibold mb-6 text-gray-900 dark:text-white">Estações</h2>
+      
+      {/* Seção de busca */}
+      <div className="w-full bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-md mb-4">
+        <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">Buscar Estação</h3>
         <div className="flex items-center space-x-2">
           <div className="flex w-full items-center space-x-2">
+            {/* Select para escolher a estação */}
             <Select value={select} onValueChange={setselect}>
-              <SelectTrigger className="w-full flex flex-1"> 
+              <SelectTrigger className="w-full flex flex-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md">
                 <SelectValue placeholder="Selecione uma estação" />
               </SelectTrigger>
               <SelectContent className="max-h-60 overflow-y-auto">
                 {markers && renderSelectItems(markers)}
               </SelectContent>
             </Select>
+
+            {/* Botão de reset */}
             <button
               onClick={handleReset}
-              className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full hover:bg-gray-300"
+              className="flex items-center justify-center w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600"
               title="Resetar seleção"
             >
-              <ListRestart className="w-5 h-5 text-gray-700" />
+              <ListRestart className="w-5 h-5 text-gray-700 dark:text-white" />
             </button>
           </div>
         </div>
       </div>
 
-      <div className="w-full bg-gray-100 p-1 rounded-lg z-0">
+      {/* Mapa */}
+      <div className="w-full bg-gray-100 dark:bg-gray-800 p-1 rounded-lg z-0">
         <MapContainer
           center={center}
           zoom={13}
@@ -88,7 +95,7 @@ export default function MapComponent({
             >
               <Popup>
                 <Link to={`/readings/${marker.id}`}>
-                  <span className="text-gray-900">{marker.name}</span>
+                  <span className="text-gray-900 dark:text-white">{marker.name}</span>
                 </Link>
               </Popup>
             </Marker>

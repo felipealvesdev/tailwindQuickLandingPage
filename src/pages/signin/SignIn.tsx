@@ -10,7 +10,7 @@ export default function SignIn() {
               src={softexLabsLogo}
               className="mx-auto h-10 w-auto"
             />
-            <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
+            <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-gray-50">
               Faça login na sua conta
             </h2>
           </div>
@@ -18,7 +18,7 @@ export default function SignIn() {
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form action="#" method="POST" className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
+                <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900 dark:text-gray-50">
                   Endereço de email
                 </label>
                 <div className="mt-2">
@@ -35,11 +35,11 @@ export default function SignIn() {
   
               <div>
                 <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900">
+                  <label htmlFor="password" className="block text-sm/6 font-medium text-gray-900 dark:text-gray-50">
                     Senha
                   </label>
                   <div className="text-sm">
-                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                    <a href="#" className="font-semibold hover:text-indigo-500 text-orange-500">
                       Esqueceu sua senha?
                     </a>
                   </div>
@@ -67,9 +67,9 @@ export default function SignIn() {
               </div>
             </form>
   
-            <p className="mt-10 text-center text-sm/6 text-gray-500">
+            <p className="mt-10 text-center text-sm/6 text-gray-500 dark:text-gray-200">
               Não é membro?{' '}
-              <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+              <a href="#" className="font-semibold text-orange-600 hover:text-orange-400">
                 Faça seu cadastro!
               </a>
             </p>

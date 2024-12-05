@@ -238,7 +238,7 @@ export default function Reading() {
               : translateObject.title["en-US"]}
             : {data.station_name}
           </h1>
-          <h2 className="text-center text-base md:text-lg text-gray-950/60">
+          <h2 className="text-center text-base md:text-lg text-gray-950/60 dark:text-gray-50/60">
             {today_date.toLocaleDateString(
               language === "pt-BR" ? "pt-BR" : "en-US",
               {
@@ -260,7 +260,7 @@ export default function Reading() {
                     key={`${filter.periodFilter}-${i}`}
                     onClick={() => handlePeriodFilter(filter.periodFilter)}
                     data-active={periodFilter === filter.periodFilter}
-                    className="w-1/3 text-center data-[active='true']:bg-emerald-500 p-2 hover:cursor-pointer bg-gray-300"
+                    className="w-1/3 text-center data-[active='true']:bg-orange-500 data-[active='true']:dark:bg-orange-500 p-2 hover:cursor-pointer bg-gray-300 dark:bg-gray-800"
                   >
                     <span>
                       {language === "pt-BR" ? filter["pt-BR"] : filter["en-US"]}
@@ -281,7 +281,7 @@ export default function Reading() {
                   }
                 />
               </div>
-              <div className="w-full md:w-[30%] md:h-[448px] flex-1 flex flex-col items-center rounded-lg shadow justify-start overflow-hidden bg-white">
+              <div className="w-full md:w-[30%] md:h-[448px] flex-1 flex flex-col items-center rounded-lg shadow justify-start overflow-hidden bg-white dark:bg-gray-800">
                 <div className="bg-theme-secondary-800 text-center w-full py-4">
                   <h2 className="text-xl md:text-3xl text-white">
                     {language === "pt-BR"

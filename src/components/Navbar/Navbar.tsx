@@ -30,7 +30,7 @@ const { language } = useTranslation();
 
   return (
     <nav className="sticky top-0 bg-orange-500 dark:bg-orange-600 shadow-lg pb-1 z-50">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="flex items-center justify-between pl-8 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center">
             <img className="h-10 w-auto" src={emmLogo} alt="Logo" />
@@ -71,7 +71,6 @@ const { language } = useTranslation();
             </Link>
           </div>
         </div>
-      </div>
     </nav>
   );
 }

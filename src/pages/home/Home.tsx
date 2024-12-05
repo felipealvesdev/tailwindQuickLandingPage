@@ -7,6 +7,7 @@ import colors from "tailwindcss/colors";
 export default function Home() {
   const token = import.meta.env.VITE_API_TOKEN;
   const stationsUrl = import.meta.env.VITE_API_STATIONS_URL;
+
   const { data, loading } = useStations({
     url: stationsUrl,
     token: token,

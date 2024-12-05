@@ -99,12 +99,12 @@ export default function Footer() {
     },
   };
   return (
-    <footer className="bg-white lg:grid lg:grid-cols-5">
+    <footer className="bg-white dark:bg-gray-800 lg:grid lg:grid-cols-5">
       <div className="relative block h-32 lg:col-span-2 lg:h-full">
         <img
           src={softexPernambucoLogo}
           alt=""
-          className="absolute inset-0 h-50 w-full object-scale-down"
+          className="absolute inset-0 h-50 w-full object-scale-down "
         />
       </div>
 
@@ -112,7 +112,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <p>
-              <span className="text-xs uppercase tracking-wide text-gray-500">
+              <span className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                 {language === "pt-BR"
                   ? translateObject.info.callUs["pt-BR"]
                   : translateObject.info.callUs["en-US"]}
@@ -120,13 +120,13 @@ export default function Footer() {
 
               <a
                 href="#"
-                className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl"
+                className="block text-2xl font-medium text-gray-900 dark:text-gray-400 hover:opacity-75 sm:text-3xl"
               >
                 0123456789
               </a>
             </p>
 
-            <ul className="mt-8 space-y-1 text-sm text-gray-700">
+            <ul className="mt-8 space-y-1 text-sm text-gray-700 dark:text-gray-200">
               {language === "pt-BR"
                 ? translateObject.info.workingHours.map((item, i) => (
                     <li key={`${item.day}-${i}`}>
@@ -146,7 +146,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Facebook</span>
 
@@ -170,7 +170,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Instagram</span>
 
@@ -194,7 +194,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Twitter</span>
 
@@ -214,7 +214,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">GitHub</span>
 
@@ -238,7 +238,7 @@ export default function Footer() {
                   href="#"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-gray-700 transition hover:opacity-75"
+                  className="text-gray-700 transition hover:opacity-75 dark:text-gray-300 dark:transition dark:hover:opacity-40"
                 >
                   <span className="sr-only">Dribbble</span>
 
@@ -261,7 +261,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <p className="font-medium text-gray-900">
+              <p className="font-medium text-gray-900 dark:text-gray-400">
                 {language === "pt-BR"
                   ? translateObject.services.title["pt-BR"]
                   : translateObject.services.title["en-US"]}
@@ -273,7 +273,7 @@ export default function Footer() {
                     <li key={`${item}-${i}`}>
                       <a
                         href="#"
-                        className="text-gray-700 transition hover:opacity-75"
+                        className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
                       >
                         {language === "pt-BR" ? item["pt-BR"] : item["en-US"]}
                       </a>
@@ -284,7 +284,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="font-medium text-gray-900">
+              <p className="font-medium text-gray-900 dark:text-gray-400">
                 {language === "pt-BR"
                   ? translateObject.company.title["pt-BR"]
                   : translateObject.company.title["en-US"]}
@@ -296,7 +296,7 @@ export default function Footer() {
                     <li key={`${item}-${i}`}>
                       <a
                         href="#"
-                        className="text-gray-700 transition hover:opacity-75"
+                        className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
                       >
                         {language === "pt-BR" ? item["pt-BR"] : item["en-US"]}
                       </a>
@@ -308,16 +308,16 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="pb-12 pt-6 flex items-center justify-evenly lg:col-span-5 border-t w-full border-gray-100">
-        <div className="flex flex-1" />
-        <div className="flex flex-1 items-center justify-center">
+      <div className="pb-12 pt-6 flex items-center justify-evenly lg:col-span-5 border-t w-full border-gray-100 mt-12 border-t border-gray-100 dark:border-gray-950">
+        <div className="flex flex-1 sm:flex sm:items-center sm:justify-between" />
+        <div className="flex flex-1 items-center justify-center flex flex-wrap gap-4 text-xs">
           <ul className="flex flex-wrap gap-4 text-xs">
             {translateObject.ending.legal.map((item, i) => {
               return (
                 <li key={`${item}-${i}`}>
                   <a
                     href="#"
-                    className="text-gray-500 transition hover:opacity-75"
+                    className="text-gray-500 transition hover:opacity-75 dark:text-gray-300"
                   >
                     {language === "pt-BR" ? item["pt-BR"] : item["en-US"]}
                   </a>
@@ -327,7 +327,7 @@ export default function Footer() {
           </ul>
         </div>
         <div className="flex flex-1 items-center justify-center">
-          <p className="mt-8 text-xs text-gray-500 sm:mt-0">
+          <p className="mt-8 text-xs text-gray-500 sm:mt-0 dark:text-gray-300">
             &copy;{" "}
             {language === "pt-BR"
               ? translateObject.ending.copyright["pt-BR"]

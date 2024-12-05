@@ -5,7 +5,6 @@ import useTranslation from "@/hooks/useTranslation";
 const About = () => {
   const { language } = useTranslation();
   const [selectedLink, setSelectedLink] = useState<number>(1); // Estado para controlar o link selecionado
-
   const links: {
     name:
       | "Nossos Projetos"
@@ -83,11 +82,9 @@ const About = () => {
 
   return (
     <section className="flex flex-col items-center py-8">
-      <div className="w-full max-w-2xl bg-white dark:bg-black rounded-lg shadow-lg p-8 border-2">
+      <div className="w-full max-w-2xl bg-white dark:bg-gray-950 rounded-lg shadow-lg p-8 border-2 dark:border-gray-700">
         <div className="text-center mb-6">
-          <h4 className="text-xl font-semibold text-gray-800 dark:text-gray-50">
-            SOFTEXLABS
-          </h4>
+          <h4 className="text-xl font-semibold text-gray-800 dark:text-gray-50">SOFTEXLABS</h4>
         </div>
 
         <div className="flex justify-around text-lg font-medium text-gray-700 dark:text-gray-50">
@@ -114,7 +111,8 @@ const About = () => {
         <div className="flex items-start space-x-4">
           {selectedLink === 1 && (
             <div className="flex flex-col items-start space-y-4">
-              <div className="w-full p-2 bg-gray-100 rounded-lg">
+              <div className="w-full p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+
                 <img
                   src="https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Exemplo de Projeto"
@@ -133,7 +131,7 @@ const About = () => {
                     : translateObject.projects.description["en-US"]}
                 </p>
 
-                <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">
+                <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 focus:outline-none">
                   {language === "pt-BR"
                     ? translateObject.projects.button["pt-BR"]
                     : translateObject.projects.button["en-US"]}
@@ -143,7 +141,8 @@ const About = () => {
           )}
           {selectedLink === 2 && (
             <div className="flex flex-col items-start space-y-4">
-              <div className="w-full p-2 bg-gray-100 rounded-lg">
+              <div className="w-full p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+
                 <img
                   src="https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Participação"
@@ -161,7 +160,7 @@ const About = () => {
                     ? translateObject.participation.description["pt-BR"]
                     : translateObject.participation.description["en-US"]}
                 </p>
-                <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">
+                <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 focus:outline-none">
                   Saiba Mais
                 </button>
               </div>
@@ -169,7 +168,8 @@ const About = () => {
           )}
           {selectedLink === 3 && (
             <div className="flex flex-col items-start space-y-4">
-              <div className="w-full p-2 bg-gray-100 rounded-lg">
+              <div className="w-full p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+
                 <img
                   src="https://images.pexels.com/photos/2333332/pexels-photo-2333332.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt="Exemplo de Artigo"

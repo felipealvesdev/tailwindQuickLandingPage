@@ -1,17 +1,31 @@
-import { Link, useLocation } from 'react-router-dom';
 import { Home, Sun, MoonStar } from 'lucide-react'; 
-import { Switch } from "@/components/ui/switch"
-import useTheme from '@/hooks/useTheme';
-import emmLogo from '../../assets/logos/emmLogo.png';
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import emmLogo from "../../assets/logos/emmLogo.png";
+import { Link, useLocation } from "react-router-dom";
+import { Switch } from "@/components/ui/switch";
+import useTheme from "@/hooks/useTheme";
+import LanguageDropDownMenu from "../LanguageDropDownMenu/LanguageDropDownMenu";
+import useTranslation from "@/hooks/useTranslation";
 
-const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
+const classNames = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
 export default function Navbar() {
   const location = useLocation();
   const { toggleTheme, theme } = useTheme();
+const { language } = useTranslation();
 
   const navigation = [
-    { name: 'Home', href: '/', current: location.pathname === '/' },
+    {
+      name: language === "pt-BR" ? "Inicio" : "Home",
+      href: "/",
+      current: location.pathname === "/",
+    },
+    {
+      name: language === "pt-BR" ? "Em desenvolvimento" : "Work in progress",
+      href: "#",
+      current: false,
+    },
   ];
 
   return (
@@ -20,6 +34,9 @@ export default function Navbar() {
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex items-center">
             <img className="h-10 w-auto" src={emmLogo} alt="Logo" />
+
+              </div>
+
           </div>
           
           <div className="flex items-center space-x-4">
@@ -32,7 +49,6 @@ export default function Navbar() {
             >
               <Home className="h-6 w-6" />
             </Link>
-
             <div className="flex items-center space-x-2">
               {theme === "light" ? (
                 <Sun className="text-white h-6 w-6" />
@@ -46,7 +62,7 @@ export default function Navbar() {
                 className="w-10 h-6 bg-orange-500 rounded-full relative focus:outline-none"
               />
             </div>
-            
+            <LanguageDropDownMenu />
             <Link
               to="/signin"
               className="rounded-full bg-white px-4 py-2 text-sm font-medium text-orange-700 shadow-md hover:bg-orange-500 hover:text-white focus:outline-none"

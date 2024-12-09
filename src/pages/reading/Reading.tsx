@@ -248,7 +248,17 @@ export default function Reading() {
               }
             )}
           </h2>
-        </div>
+          {Number(id) === 1 && ( // Adicionando o redirecionamento aqui
+          <a
+            href="https://www.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block px-4 py-2 bg-orange-500 text-black dark:text-white rounded hover:bg-orange-600 w-[200px]"
+          >
+            Redirecionar
+          </a>
+        )}
+    </div>
       )}
       <div className="z-20 px-2 w-full min-h-[400px] overflow-hidden flex flex-col h-full items-center ">
         {graphType && (

@@ -182,12 +182,12 @@ export default function Reading() {
             {type === "P"
               ? (min / 1000).toFixed(1)
               : type === "T" && language === "pt-BR"
-              ? min.toFixed(1)
-              : type === "T" && language === "en-US"
-              ? celsiusToFahrenheit(min).toFixed(1)
-              : type === "A" && language === "en-US"
-              ? (min * 3.28084).toFixed(1)
-              : min.toFixed(1)}
+                ? min.toFixed(1)
+                : type === "T" && language === "en-US"
+                  ? celsiusToFahrenheit(min).toFixed(1)
+                  : type === "A" && language === "en-US"
+                    ? (min * 3.28084).toFixed(1)
+                    : min.toFixed(1)}
             {unit()}
           </span>
           <span className="flex items-center space-x-4 w-1/2">
@@ -195,12 +195,12 @@ export default function Reading() {
             {type === "P"
               ? (max / 1000).toFixed(1)
               : type === "T" && language === "pt-BR"
-              ? max.toFixed(1)
-              : type === "T" && language === "en-US"
-              ? celsiusToFahrenheit(max).toFixed(1)
-              : type === "A" && language === "en-US"
-              ? (max * 3.28084).toFixed(1)
-              : max.toFixed(1)}
+                ? max.toFixed(1)
+                : type === "T" && language === "en-US"
+                  ? celsiusToFahrenheit(max).toFixed(1)
+                  : type === "A" && language === "en-US"
+                    ? (max * 3.28084).toFixed(1)
+                    : max.toFixed(1)}
             {unit()}
           </span>
         </div>
@@ -248,17 +248,9 @@ export default function Reading() {
               }
             )}
           </h2>
-          {Number(id) === 1 && ( // Adicionando o redirecionamento aqui
-          <a
-            href="https://www.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-block px-4 py-2 bg-orange-500 text-black dark:text-white rounded hover:bg-orange-600 w-[200px]"
-          >
-            Redirecionar
-          </a>
-        )}
-    </div>
+          
+          
+        </div>
       )}
       <div className="z-20 px-2 w-full min-h-[400px] overflow-hidden flex flex-col h-full items-center ">
         {graphType && (
@@ -285,8 +277,8 @@ export default function Reading() {
                   data={
                     filteredData.length > 0
                       ? filteredData.filter((reading: ReadingsProps) => {
-                          return reading.type === graphType;
-                        })
+                        return reading.type === graphType;
+                      })
                       : null
                   }
                 />
@@ -324,7 +316,22 @@ export default function Reading() {
               )
           )}
         </div>
-      </div>
-    </div>
+
+        {/* Botão de redirecionamento abaixo dos botões de parâmetros */}
+        {Number(id) === 1 && (
+          <a
+            href="https://www.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block px-4 py-2 bg-orange-500 text-black dark:text-white rounded hover:bg-orange-600 w-[200px] font-bold text-center"
+          >
+            Redirecionar
+          </a>
+        )}
+
+          </div>
+
+        </div>
+      
   );
 }
